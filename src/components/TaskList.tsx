@@ -3,10 +3,11 @@ import { ITasks } from '../interfaces/Tasks';
 
 import styles from './TaskList.module.css';
 interface Props {
-    taskList: ITasks[]
+    taskList: ITasks[],
+    handleDelete(id:number):void
 }
 
-const TaskList = ({taskList}:Props) => {
+const TaskList = ({taskList, handleDelete}:Props) => {
     return (
         <>
         {taskList.length > 0 ? taskList.map((task) => (
@@ -18,7 +19,7 @@ const TaskList = ({taskList}:Props) => {
                 </div> 
                 <div className={styles.actions}>
                 <span>Editar</span>
-                <span>Excluir</span>
+                <span onClick={() => {handleDelete(task.id)}}>Excluir</span>
                 </div>   
             </div>            
         )): (<p>Nao ha tarefas cadastradas!</p>)}
