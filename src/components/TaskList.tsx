@@ -10,15 +10,15 @@ const TaskList = ({taskList}:Props) => {
     return (
         <>
         {taskList.length > 0 ? taskList.map((task) => (
-            <div key={task.id}>
+            <div key={task.id} className={styles.task}>
                 
-                <div>
+                <div className={styles.title}>
                     <h4>{task.title}</h4>
                     <p>Dificuldade: {task.difficulty}</p>
                 </div> 
-                <div>
-                Editar
-                Excluir
+                <div className={styles.actions}>
+                <span>Editar</span>
+                <span>Excluir</span>
                 </div>   
             </div>            
         )): (<p>Nao ha tarefas cadastradas!</p>)}
