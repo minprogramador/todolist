@@ -7,10 +7,11 @@ import {ITasks} from '../interfaces/Tasks';
 interface Props {
     btnText: string,
     taskList: ITasks[],
-    setTaskList?: React.Dispatch<React.SetStateAction<ITasks[]>>
+    setTaskList?: React.Dispatch<React.SetStateAction<ITasks[]>>,
+    task?: ITasks | null,
 }
 
-const TaskForm = ({btnText, taskList,setTaskList}:Props) => {
+const TaskForm = ({btnText, taskList,setTaskList, task}:Props) => {
 
     const [id, setId] = useState<number>(0);
     const [title, setTitle] = useState<string>("");
@@ -34,6 +35,14 @@ const TaskForm = ({btnText, taskList,setTaskList}:Props) => {
             setDifficulty(parseInt(e.target.value));
         }
     };
+    
+    useEffect(() => {
+        if(task){
+            setId(task.id);
+            setTitle(task.title);
+            setDifficulty(task.difficulty);
+        }
+    }, [task]);
 
     return (
         <form onSubmit={addTaskHandler} method="POST" className={styles.form}>
